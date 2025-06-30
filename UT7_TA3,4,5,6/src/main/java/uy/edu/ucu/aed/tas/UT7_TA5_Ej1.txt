@@ -1,0 +1,29 @@
+UT7 TA5 Ejercicio 1
+
+En clase grafoDrigido
+todosLosCaminos(Comparable origen, Comparable destino)
+	desvisitarTodosLosVertices();
+	vertice origen <- buscarVertice(Comparable origen)
+	TCamino camino <- nuevo Tcamino(Vertice origen)
+	TCaminos caminos <- nuevo tcaminos
+	devolver vértice origen.todosLosCaminos(destino, camino, caminos)
+Fin todosLosCaminos
+
+En clase Vértice
+todosLosCaminos(Comparable verticeDestino, TCamino caminoPrevio, TCaminos todosLosCaminos)
+	this.Visitado <- Verdadero
+	Para cada adyacencia en this.Adyacentes hacer
+		destino <- adyacencia.Destino
+		Si destino.Visitado == Falso
+			TCamino copia = caminoPrevio.copiar();
+                    	copia.agregarAdyacencia(adyacencia);
+			todosLosCaminos.caminos.agregar(copia)
+		Sino
+			TCamino copia = caminoPrevio.copiar();
+                    	copia.agregarAdyacencia(adyacencia);                    
+			destino.todosLosCaminos(etVertDest,copia,todosLosCaminos); 
+		Fin Si
+	Fin Para cada
+	this.Visitado <- Falso
+	Devolver todosLosCaminos
+Fin todosLosCaminos

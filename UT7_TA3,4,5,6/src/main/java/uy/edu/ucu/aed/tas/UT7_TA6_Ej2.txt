@@ -1,0 +1,73 @@
+En TGrafoDirigido:
+EncontrarInicio()
+COMIENZO
+	inicio = lista
+	Para cada vertice en vértices hacer
+    		esAdyacente <- falso
+    		Para cada vertice2 en vértices hacer
+        		Si (vertice2.getAdyacentes().contiene(vertice))
+				esAdyacente <- veradero
+				break
+    			Fin si
+		Fin para cada
+    		Si esAdyacente = false
+        		inicio.insertar(vertice)
+    		Fin si
+	Fin para cada
+	Devolver inicio
+FIN
+
+EncontrarFin()
+COMIENZO
+	vertice fin <- nulo
+	Para cada vertice en vértices
+		Si vertice.getAdyacentes().isEmpty() entonces
+			fin <- vertice
+		Fin Si
+	Fin Para cada
+
+	Devolver fin
+FIN
+
+CaminoCritico()
+COMIENZO
+	Si (tieneCiclo()) entonces
+		devolver excepción: "El grafo no es acíclico."
+	Fin si
+	
+		
+	lista inicio <- EncontrarInicio()
+	vertice fin <- EncontrarFin()
+	Double costoMax = 0.0
+	TCamino caminoCritico = vacio
+
+	Para cada vertice en inicio
+		Para cada TCamino en todosLosCaminos(vertice, fin)
+			Si (costoMax < camino.getCostoTotal())
+            			costoMax = camino.getCostoTotal()
+            			caminoCritico = camino
+        		Fin Si	
+		Fin Para cada
+	Fin Para cada
+	
+	devolver caminoCritico
+FIN
+
+CalcularHolgura()
+COMIENZO
+	lista inicio <- EncontrarInicio()
+	vertice fin <- EncontrarFin()
+	TCamino caminoCritico <- CaminoCritico()
+	Double caminoCriticoCosto <- caminoCritico.getCostoTotal()
+	Double holgura <- 0.0
+	StringBuilder resultado <- ""
+
+	Para cada vertice en inicio
+		Para cada camino en todosLosCaminos(vertice, fin)
+			holgura <- caminoCriticoCosto - camino.getCostoTotal()
+			resultado.append(imprimirEtiquetas() + ", " + holgura.toString())		
+		Fin Para cada
+	Fin Para cada
+
+	devolver resultado
+FIN
