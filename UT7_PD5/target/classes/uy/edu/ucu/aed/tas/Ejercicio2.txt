@@ -1,0 +1,30 @@
+Ejercicio2:
+Orden lineal de los vertices de un grafo dirigido
+
+En TGrafoDirigido:
+ordenTopologico()
+COMIENZO
+    ordenTopologico()
+    desvisitarVertices()
+    lista <- nueva ListaEnlazada
+    Para cada vertice en this.Vertices
+	    Si !vertice.getVisitado
+		    vertice.ordenTopologico(lista)
+	    FinSi
+    FinPara
+    devolver lista
+FIN
+
+En TVertice:
+ordenTopologico(ListaEnlazada lista)
+COMIENZO
+    this.visitado <- verdadero
+    Para cada adyacencia en this.adyacencias
+	    destino <- adyacencia.getDestino()
+	    Si !destino.getVisitado()
+		    destino.ordenTopologico(lista)
+	    FinSi
+    FinPara
+    lista.insertar(0,this)
+    devolver lista
+FIN

@@ -1,0 +1,4 @@
+Ejercicio 2:
+d. El camino de menor costo es el de A -> C -> E, que tiene costo 2
+
+f. El vértice que es el centro del grafo es el A

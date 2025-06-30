@@ -1,0 +1,41 @@
+Ejercicio 1:
+
+En TGrafoDirigido:
+boolean tieneCiclo()
+COMIENZO
+    desvisitarVertices()
+    resultado <- falso
+
+    Para cada vertice en this.vertices
+	Si !vertice.getVisitado()
+		camino <- nueva lista enlazada
+		camino.insertar(vertice)
+		resultado <- vertice.tieneCiclo(camino)
+		Si resultado == verdadero
+			devolver verdadero
+        FinSi
+    FinSi
+    devolver resultado
+FIN
+
+En TVertice:
+boolean tieneCiclo(ListaEnlazada camino)
+COMIENZO
+    this.visitado <- verdadero
+    camino.insertar(this.getEtiqueta())
+    ciclo <- falso
+    Para cada adyacencia en this.adyacencias
+	    v <- adyacencia.getDestino()
+	    Si !v.getVisitado()
+		    ciclo <- v.tieneCiclo(camino)
+		    Si ciclo == verdadero
+		        salir
+	        Sino
+	            si camino.contiene(v.GetEtiqueta())
+		        ciclo <- verdadero
+	        FinSi
+	    FinSi
+    FinPara
+    camino.eliminar(this.getEtiqueta())
+    devolver ciclo
+FIN
